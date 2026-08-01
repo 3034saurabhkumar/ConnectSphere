@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: userService
+  datasource:
+    url: jdbc:postgresql://localhost:5432/usersDB
+    username:
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 9020
+  servlet:
+    context-path: /api/v1/users
+
+jwt:
+  secretKey: djdiwnr45@$&)"?afk1!#@%^7)*NM>>!@%^&KJJjfshjf ewk124554uiou%^&*
