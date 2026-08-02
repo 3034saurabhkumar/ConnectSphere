@@ -1,6 +1,6 @@
 spring:
   application:
-    name: userService
+    name: user-service
   datasource:
     url: jdbc:postgresql://localhost:5432/usersDB
     username:
@@ -12,7 +12,12 @@ spring:
 server:
   port: 9020
   servlet:
-    context-path: /api/v1/users
+    context-path: /users
 
 jwt:
   secretKey: djdiwnr45@$&)"?afk1!#@%^7)*NM>>!@%^&KJJjfshjf ewk124554uiou%^&*
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
