@@ -12,6 +12,7 @@
 ---
 
 ## 📐 Architecture Overview
+<img width="865" height="397" alt="image" src="https://github.com/user-attachments/assets/21201a09-c171-43ae-851f-9ebc5bfbc7ac" />
 
 ```mermaid
 flowchart TD
