@@ -1,5 +1,8 @@
 package com.saurabh3034.connectSphere.postsService.service;
 
+import com.saurabh3034.connectSphere.postsService.auth.AuthContextHolder;
+import com.saurabh3034.connectSphere.postsService.client.ConnectionsServiceClient;
+import com.saurabh3034.connectSphere.postsService.dto.PersonDto;
 import com.saurabh3034.connectSphere.postsService.dto.PostCreateRequestDto;
 import com.saurabh3034.connectSphere.postsService.dto.PostDto;
 import com.saurabh3034.connectSphere.postsService.entity.Post;
@@ -21,6 +24,7 @@ public class PostService {
 
     private final PostRepository postRepository;
     private final ModelMapper modelMapper;
+    private final ConnectionsServiceClient connectionsServiceClient;
 
     public PostDto createPost(PostCreateRequestDto postCreateRequestDto, long userId) {
         log.info("Creating post for user with id: {}", userId);
@@ -32,6 +36,10 @@ public class PostService {
 
     public PostDto getPostById(Long postId) {
         log.info("Getting post with id: {}", postId);
+
+        Long userId = AuthContextHolder.getCurrentUserId();
+
+        List<PersonDto> personDtoList = connectionsServiceClient.getFirstDegreeConnections(userId);
         Post post = postRepository.findById(postId).orElseThrow(() -> new ResourceNotFoundException("Post with id " + postId + " not found"));
         return modelMapper.map(post, PostDto.class);
     }

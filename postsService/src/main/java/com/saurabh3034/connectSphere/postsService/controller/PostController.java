@@ -1,5 +1,6 @@
 package com.saurabh3034.connectSphere.postsService.controller;
 
+import com.saurabh3034.connectSphere.postsService.auth.AuthContextHolder;
 import com.saurabh3034.connectSphere.postsService.dto.PostCreateRequestDto;
 import com.saurabh3034.connectSphere.postsService.dto.PostDto;
 import com.saurabh3034.connectSphere.postsService.service.PostService;
@@ -29,6 +30,7 @@ public class PostController {
 
     @GetMapping("/{postId}")
     public ResponseEntity<PostDto> getPost(@PathVariable Long postId) {
+        Long userId = AuthContextHolder.getCurrentUserId();
         PostDto postDto = postService.getPostById(postId);
         return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
